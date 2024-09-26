@@ -1,0 +1,168 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	--green-color: #cad178;
+	--blue-color: hsl(228, 18%, 32%);
+	--grey-color: #95818d;
+}
+
+html {
+	height: 100vh;
+}
+/*
+HEADER PART
+*/
+
+header {
+	background-color: var(--blue-color);
+	padding: 20px 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.nav-logo {
+	display: flex;
+	align-items: center;
+}
+
+.nav-icons {
+	display: flex;
+	flex-direction: row;
+}
+
+.nav-logo > img {
+	cursor: pointer;
+}
+
+.nav-logo > img:first-of-type {
+	display: none;
+	width: 75px;
+}
+
+.nav-logo > img:nth-of-type(2) {
+	width: 100px;
+}
+
+.nav-logo > .menu-item > i {
+	color: var(--green-color);
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+.nav-primary {
+	display: none;
+}
+.nav-text {
+	color: var(--green-color);
+	display: none;
+}
+
+.nav-icons > div > i {
+	color: var(--green-color);
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+/*
+MAIN PART
+*/
+
+main {
+	display: flex;
+	flex-flow: column-reverse;
+}
+
+main > aside {
+	background-color: var(--green-color);
+}
+
+main > aside > nav {
+	display: flex;
+	flex-direction: column;
+}
+
+main > aside > nav > a {
+	margin: 10px 10px;
+	text-decoration: none;
+	color: black;
+}
+
+main > aside > nav > a:hover {
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.products-container {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.products-container > div {
+	margin: 10px;
+	width: 200px;
+	height: 200px;
+	background-color: var(--grey-color);
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+
+@media (min-width: 650px) {
+	.nav-logo > img:first-of-type {
+		display: inline;
+	}
+
+	.nav-logo > img:nth-of-type(2) {
+		display: none;
+	}
+
+	.nav-text {
+		display: inline;
+	}
+}
+
+@media (min-width: 870px) {
+	.nav-primary {
+		display: flex;
+		flex-direction: row;
+		color: var(--green-color);
+	}
+
+	.nav-primary > div {
+		margin-right: 20px;
+	}
+
+	.nav-logo > .menu-item > i {
+		display: none;
+	}
+
+	main {
+		display: flex;
+		justify-content: space-between;
+		flex-flow: row-reverse;
+		height: calc(100vh - 115px);
+	}
+
+	.products-container {
+		flex-grow: 1;
+		align-items: center;
+	}
+
+	aside {
+		display: flex;
+	}
+
+	main > aside > nav {
+		justify-content: flex-end;
+	}
+
+	main > aside > nav > a {
+		width: max-content;
+		margin-right: 100px;
+	}
+}
