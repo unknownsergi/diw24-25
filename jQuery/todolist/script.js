@@ -19,8 +19,24 @@ const TASKSJSON = [
 	},
 ];
 
+let tasks = [];
+
+function loadTasksFromLocalStorage() {
+	const tasks = localStorage.getItem("tasks");
+	return tasks ? JSON.parse(tasks) : [];
+}
+
+function saveTasksToLocalStorage(tasks) {
+	localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function appendTask(task) {
+	const taskItem = `<li>${task.title} - ${task.priority}</li>`;
+	$("#taskList").append(taskItem);
+}
+
 $(document).ready(function () {
-	const tasks = loadTasksFromLocalStorage();
+	tasks = loadTasksFromLocalStorage();
 
 	if (tasks.length === 0) {
 		$.each(TASKSJSON, function (_, task) {
@@ -28,18 +44,23 @@ $(document).ready(function () {
 			appendTask(task);
 		});
 
-		localStorage.setItem("tasks", JSON.stringify(TASKSJSON));
+		saveTasksToLocalStorage(TASKSJSON);
 	} else {
 		$.each(tasks, function (_, task) {
 			appendTask(task);
 		});
 	}
+
+	$("#addButton").click(function () {
+		const newTask = {
+			id: tasks.length + 1,
+			title: $("#taskTitle").val(),
+			completed: false,
+			priority: $("#taskPriority").val(),
+		};
+
+		tasks.push(newTask);
+		appendTask(newTask);
+		saveTasksToLocalStorage(tasks);
+	});
 });
-
-function appendTask(task) {
-	$("#todo-list").append(`<li>${task.title} - ${task.priority}</li>`);
-}
-
-function loadTasksFromLocalStorage() {
-	return JSON.parse(localStorage.getItem("tasks")) || [];
-}
